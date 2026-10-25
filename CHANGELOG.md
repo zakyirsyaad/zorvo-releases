@@ -2,13 +2,7 @@
 
 All notable changes to Zorvo. Versions follow [Semantic Versioning](https://semver.org).
 
-## [Unreleased]
-
-### Changed
-
-- **The landing page shows Zorvo 0.4.** It now covers installing agents from the ACP registry, signing in and the terminal inside the app, branches, the composer, and the plan in the top bar. Its docs links point at the README until the docs pages exist.
-
-## [0.5.0] - 2026-10-25
+## 0.5.0 - 2026-10-25
 
 ### Added
 
@@ -19,13 +13,13 @@ All notable changes to Zorvo. Versions follow [Semantic Versioning](https://semv
 - **Detected agents folds away.** Click its header in the sidebar to hide or show the list.
 - **The plan button matches the others in the top bar.** Its done count ("4/4") is now a small badge on the corner of the icon, like the count on Background tasks.
 
-## [0.4.1] - 2026-10-24
+## 0.4.1 - 2026-10-24
 
 ### Fixed
 
 - **The terminal drawer scrolls, and its latest line stays in view.** The shell took its height from its own output, so every fit added a row: it grew past the bottom of the window, the prompt and newest output fell out of sight, and nothing was left in its scrollback to scroll. It now fills the drawer, and the sign-in terminal no longer clips its last row.
 
-## [0.4.0] - 2026-10-24
+## 0.4.0 - 2026-10-24
 
 ### Added
 
@@ -52,7 +46,7 @@ All notable changes to Zorvo. Versions follow [Semantic Versioning](https://semv
 - **A session's status dot stays at the right edge.** The dot no longer shifts with the actions beside it, so every row lines up, and the actions replace it when you hover or focus the row.
 - **A long session stays responsive while the agent streams.** Streamed output lands once a frame, and only the reply that changed re-renders, so typing and scrolling keep up in a session with a long history.
 
-## [0.3.0] - 2026-10-22
+## 0.3.0 - 2026-10-22
 
 ### Added
 
@@ -94,81 +88,52 @@ All notable changes to Zorvo. Versions follow [Semantic Versioning](https://semv
 - **Agents no longer stall while a session opens.** Zorvo now answers every request an agent sends, even before its session is ready, so an agent that asks something during startup is no longer left waiting up to a minute. A permission request an agent sends right after a session opens now reaches you, and one for a session Zorvo does not know is cancelled. Two sessions of the same agent no longer mix up each other's messages when the agent gives both the same id. Forking is refused for an agent that cannot fork.
 - **A tool still running when its turn ends settles.** It now shows as failed instead of running forever, since a turn cannot end while a tool is genuinely working.
 
-## [0.2.0] - 2026-10-19
+## 0.2.0 - 2026-10-19
 
 ### Changed
 
 - **Agent Desktop is now Zorvo.** New name, icon and bundle identifier (`xyz.zorvo.desktop`). On first launch Zorvo copies your sessions and transcripts from the old `com.agentdesktop.app` data folder and leaves that folder untouched. Delete Agent Desktop from Applications afterwards: both apps share the old sessions' worktrees, so deleting a session in one removes its worktree for the other. macOS ties notification and folder permissions to the bundle identifier, so grant them to Zorvo again.
-- **A new look.** Zorvo uses its own design system: Instrument Sans for the interface, Geist Mono for code and the terminal, and one set of colors throughout. Amber now only marks an agent that is waiting on you, hints and timestamps are easier to read, and keyboard focus shows a clear ring. ([#35])
-- App logic moved out of `App.tsx` into focused hooks. ([#8], [#12])
+- **A new look.** Zorvo uses its own design system: Instrument Sans for the interface, Geist Mono for code and the terminal, and one set of colors throughout. Amber now only marks an agent that is waiting on you, hints and timestamps are easier to read, and keyboard focus shows a clear ring. (#35)
+- App logic moved out of `App.tsx` into focused hooks. (#8, #12)
 
 ### Added
 
-- **Light mode.** Zorvo follows your Mac's appearance, or pin it to Light or Dark in Settings → Appearance. The terminal stays dark either way. ([#36])
-- **Diff view.** A `+N −M` chip beside Changes totals the uncommitted lines. Click it to read every changed file's diff with line numbers, against `HEAD` or the branch's base on `main`, with a path filter and Expand all. ([#39], [#40])
-- **Background tasks.** A top-bar menu lists what is running: agents mid-turn, terminals, and the shell commands and dev servers your agents started, with their port and how long they have run. Open one, or stop it. ([#39], [#40])
-- **Sessions by workspace.** The sidebar groups sessions under their folder, with forks nested under the session they came from. A new session is set up (folder, agent, model, effort) before its first message starts it. ([#5])
-- **Worktrees.** A session can run in its own git worktree on an `agent/<title>` branch, so agents working in one repository at once never edit the same files. ([#6])
-- **Changes panel.** Review every uncommitted file with its diff, and commit the files you choose. It never pushes or throws changes away. ([#7])
-- **Session management.** Rename, pin and archive sessions. ([#9])
-- **@-mentions and drag and drop.** Mention a workspace file with `@` in the composer, or drop files onto the window. ([#11])
-- **Unread marks.** A session whose agent finished while you were elsewhere is marked. ([#13])
-- **Remembered model and effort.** New sessions start with the model and effort you picked last. ([#13])
-- **Pull request status.** The top bar shows the pull request for the session's branch and how its checks stand, read with your own `gh`. ([#14])
-- **Your pull requests in the Changes panel.** It lists the pull requests you opened in the repository. ([#15])
-- **Context details.** Click the context meter to see the tokens used, the tokens left and the session's cost. ([#15])
-- **Agent logos.** The session list and Detected Agents show each agent's logo. ([#15])
-- **Rewind.** Under each of your messages: its time, Copy, and Rewind, which takes the conversation back to before that message and puts it back in the composer. ([#15])
-- **Workspace header.** The session's folder and branch sit above its conversation. ([#15])
-- **Check again in Settings.** Detect an agent installed while the app runs, without running setup again. ([#17])
+- **Light mode.** Zorvo follows your Mac's appearance, or pin it to Light or Dark in Settings → Appearance. The terminal stays dark either way. (#36)
+- **Diff view.** A `+N −M` chip beside Changes totals the uncommitted lines. Click it to read every changed file's diff with line numbers, against `HEAD` or the branch's base on `main`, with a path filter and Expand all. (#39, #40)
+- **Background tasks.** A top-bar menu lists what is running: agents mid-turn, terminals, and the shell commands and dev servers your agents started, with their port and how long they have run. Open one, or stop it. (#39, #40)
+- **Sessions by workspace.** The sidebar groups sessions under their folder, with forks nested under the session they came from. A new session is set up (folder, agent, model, effort) before its first message starts it. (#5)
+- **Worktrees.** A session can run in its own git worktree on an `agent/<title>` branch, so agents working in one repository at once never edit the same files. (#6)
+- **Changes panel.** Review every uncommitted file with its diff, and commit the files you choose. It never pushes or throws changes away. (#7)
+- **Session management.** Rename, pin and archive sessions. (#9)
+- **@-mentions and drag and drop.** Mention a workspace file with `@` in the composer, or drop files onto the window. (#11)
+- **Unread marks.** A session whose agent finished while you were elsewhere is marked. (#13)
+- **Remembered model and effort.** New sessions start with the model and effort you picked last. (#13)
+- **Pull request status.** The top bar shows the pull request for the session's branch and how its checks stand, read with your own `gh`. (#14)
+- **Your pull requests in the Changes panel.** It lists the pull requests you opened in the repository. (#15)
+- **Context details.** Click the context meter to see the tokens used, the tokens left and the session's cost. (#15)
+- **Agent logos.** The session list and Detected Agents show each agent's logo. (#15)
+- **Rewind.** Under each of your messages: its time, Copy, and Rewind, which takes the conversation back to before that message and puts it back in the composer. (#15)
+- **Workspace header.** The session's folder and branch sit above its conversation. (#15)
+- **Check again in Settings.** Detect an agent installed while the app runs, without running setup again. (#17)
 
 ### Fixed
 
-- A rewound session restarts on the model and effort it ran with. ([#16])
-- `gh` calls time out instead of piling up on a stalled network. ([#16])
-- The pull request menu stays open while an agent streams. ([#16])
-- Terminal agents keep drawing in the released app. Oh-My-Pi's screen froze on its first frame because the release build broke how the terminal answers its startup queries. ([#41])
-- Your message to a terminal agent is submitted, not left sitting in its prompt. ([#41])
-- A new terminal session no longer shows "Failed to resize the terminal". ([#41])
+- A rewound session restarts on the model and effort it ran with. (#16)
+- `gh` calls time out instead of piling up on a stalled network. (#16)
+- The pull request menu stays open while an agent streams. (#16)
+- Terminal agents keep drawing in the released app. Oh-My-Pi's screen froze on its first frame because the release build broke how the terminal answers its startup queries. (#41)
+- Your message to a terminal agent is submitted, not left sitting in its prompt. (#41)
+- A new terminal session no longer shows "Failed to resize the terminal". (#41)
 
-## [0.1.0] - 2026-10-17
+## 0.1.0 - 2026-10-17
 
 ### Added
 
-- Qwen Code, Claude Code and Codex over the Agent Client Protocol, in a chat UI with their own modes, models, permission requests, diffs and slash commands. ([#2])
-- Oh-My-Pi and Aider in their own terminal. ([#2])
-- Collapsible thinking, a working indicator and a context meter. ([#3])
-- GFM Markdown, a Content Security Policy, notifications, and a macOS release workflow. ([#4])
+- Qwen Code, Claude Code and Codex over the Agent Client Protocol, in a chat UI with their own modes, models, permission requests, diffs and slash commands. (#2)
+- Oh-My-Pi and Aider in their own terminal. (#2)
+- Collapsible thinking, a working indicator and a context meter. (#3)
+- GFM Markdown, a Content Security Policy, notifications, and a macOS release workflow. (#4)
 
 ### Fixed
 
-- Approval safety, terminal handling, the stream parser and working folders. ([#1])
-
-[Unreleased]: https://github.com/zakyirsyaad/zorvo/compare/v0.5.0...HEAD
-[0.5.0]: https://github.com/zakyirsyaad/zorvo/compare/v0.4.1...v0.5.0
-[0.4.1]: https://github.com/zakyirsyaad/zorvo/compare/v0.4.0...v0.4.1
-[0.4.0]: https://github.com/zakyirsyaad/zorvo/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/zakyirsyaad/zorvo/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/zakyirsyaad/zorvo/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/zakyirsyaad/zorvo/releases/tag/v0.1.0
-[#1]: https://github.com/zakyirsyaad/zorvo/pull/1
-[#2]: https://github.com/zakyirsyaad/zorvo/pull/2
-[#3]: https://github.com/zakyirsyaad/zorvo/pull/3
-[#4]: https://github.com/zakyirsyaad/zorvo/pull/4
-[#5]: https://github.com/zakyirsyaad/zorvo/pull/5
-[#6]: https://github.com/zakyirsyaad/zorvo/pull/6
-[#7]: https://github.com/zakyirsyaad/zorvo/pull/7
-[#8]: https://github.com/zakyirsyaad/zorvo/pull/8
-[#9]: https://github.com/zakyirsyaad/zorvo/pull/9
-[#11]: https://github.com/zakyirsyaad/zorvo/pull/11
-[#12]: https://github.com/zakyirsyaad/zorvo/pull/12
-[#13]: https://github.com/zakyirsyaad/zorvo/pull/13
-[#14]: https://github.com/zakyirsyaad/zorvo/pull/14
-[#15]: https://github.com/zakyirsyaad/zorvo/pull/15
-[#16]: https://github.com/zakyirsyaad/zorvo/pull/16
-[#17]: https://github.com/zakyirsyaad/zorvo/pull/17
-[#35]: https://github.com/zakyirsyaad/zorvo/pull/35
-[#36]: https://github.com/zakyirsyaad/zorvo/pull/36
-[#39]: https://github.com/zakyirsyaad/zorvo/pull/39
-[#40]: https://github.com/zakyirsyaad/zorvo/pull/40
-[#41]: https://github.com/zakyirsyaad/zorvo/pull/41
+- Approval safety, terminal handling, the stream parser and working folders. (#1)
