@@ -2,6 +2,12 @@
 
 All notable changes to Zorvo. Versions follow [Semantic Versioning](https://semver.org).
 
+## 0.6.1-rc.1 - 2026-10-27
+
+### Changed
+
+- Pre-release made to try the release process. Do not install it.
+
 ## 0.6.0 - 2026-10-26
 
 ### Added
