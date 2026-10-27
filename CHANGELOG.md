@@ -2,11 +2,11 @@
 
 All notable changes to Zorvo. Versions follow [Semantic Versioning](https://semver.org).
 
-## 0.6.1-rc.1 - 2026-10-27
+## 0.6.1 - 2026-10-27
 
 ### Changed
 
-- Pre-release made to try the release process. Do not install it.
+- **Updates are signed on the maintainer's Mac, not in GitHub.** The key that signs Zorvo's updates, its password and the token that publishes releases are no longer GitHub secrets, so the code that builds Zorvo cannot read them. The release workflow only builds the app; a script on the maintainer's Mac checks the build, signs the update and fills the draft release. The app itself is unchanged, and the update key is the same, so installed copies still accept updates.
 
 ## 0.6.0 - 2026-10-26
 
